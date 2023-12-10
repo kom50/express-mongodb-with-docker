@@ -10,10 +10,7 @@ const url = 'mongodb://mongodb:27017';
 const dbName = 'test'
 
 // Create a new MongoClient
-const client = new MongoClient(url, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+const client = new MongoClient(url, {});
 
 try {
   // Connect to MongoDB
