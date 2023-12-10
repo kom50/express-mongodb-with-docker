@@ -10,7 +10,10 @@ const url = 'mongodb://mongodb:27017';
 const dbName = 'test'
 
 // Create a new MongoClient
-const client = new MongoClient(url);
+const client = new MongoClient(url < {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
 
 try {
   // Connect to MongoDB
@@ -28,8 +31,11 @@ process.on('SIGINT', async () => {
   process.exit(0);
 });
 
+app.get('/', (req, res) => {
+  res.send('Hello World!')
+})
 
-app.get('/getPosts', async (req, res) => {
+app.get('/posts', async (req, res) => {
   const db = client.db(dbName);
   const collection = db.collection('posts');
 
