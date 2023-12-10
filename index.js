@@ -10,7 +10,7 @@ const url = 'mongodb://mongodb:27017';
 const dbName = 'test'
 
 // Create a new MongoClient
-const client = new MongoClient(url < {
+const client = new MongoClient(url, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
@@ -29,6 +29,11 @@ process.on('SIGINT', async () => {
   await client.close();
   console.log('MongoDB connection closed');
   process.exit(0);
+});
+
+process.on('uncaughtException', (error) => {
+  console.error('Uncaught Exception:', error.message);
+  // Handle the error or log it
 });
 
 app.get('/', (req, res) => {
