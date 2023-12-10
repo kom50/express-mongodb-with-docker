@@ -1,0 +1,24 @@
+version: '3'
+services:
+  mongodb:
+    image: mongo
+    ports:
+      - "27017:27017"
+    # environment:
+    #   MONGO_INITDB_ROOT_USERNAME: root
+    #   MONGO_INITDB_ROOT_PASSWORD: example
+    volumes:
+      - mongodb_data:/data/db
+
+  my-app:
+    build:
+      context: .
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/usr/src/app
+    depends_on:
+      - mongodb
+
+volumes:
+  mongodb_data:
