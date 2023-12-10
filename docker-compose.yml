@@ -11,6 +11,7 @@ services:
       - mongodb_data:/data/db
 
   my-app:
+    image: om50/my-app:latest
     build:
       context: .
     ports:
